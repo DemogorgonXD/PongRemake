@@ -235,33 +235,33 @@ proc draw_ball
 	je endDrawBall
 	cmp al, 9
 	je endDrawBall
-	; DI  שמירה כתובת התחלתית של מערך דמות 
+	; DI  
 	mov di,[pic_off]
 	mov dx, [y_ball]
 print_line:
-	mov cx, [x_ball] ; X מיקום התחלתי בציר 
-	mov si, [w_ball] ; רוחב תמונה
+	mov cx, [x_ball] ; 
+	mov si, [w_ball] ; 
 print_columns: 
-	; AL קריאת צבע ממערך של דמות לריסטר 
-	mov al, [di] ;AL להעתיק צבע ל
-	inc di  ; לקדם לבצע הבא במערך
+	; AL 
+	mov al, [di] ;
+	inc di  ; 
 	
 	cmp al, 00h
 	je dontDraw 
 	; פסיקה ציור פיקסל 
 	;  cx = x coordinate , dx = y coordinate, al- color
 	mov bh,0
-	mov ah,0ch ; cx ,dx במיקומים  al פסיקהפסיקה מציירת פיקסל  
+	mov ah,0ch 
 	int 10h 
 	
 dontDraw:
-	inc cx ; X מגדילים 
-	dec si ; מקטינים מונה עמודות
+	inc cx ;
+	dec si ;
 	cmp si, 0
 	jne print_columns
 	
-	inc dx ; יורדים שורה , Y מגדילים 
-	dec [h_ball] ; מקטינים מונה שורות
+	inc dx ;
+	dec [h_ball] ;
 	cmp [h_ball], 0
 	jne print_line
 endDrawBall:
